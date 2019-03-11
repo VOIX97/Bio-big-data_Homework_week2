@@ -1,36 +1,35 @@
+from sklearn.preprocessing import StandardScaler
 
-def load_train_test(train_file, test_file):
+def load_train_test(feature_file, label_file):
     """
     load data from train and test files out of the project
     Args:
-        train_file: a string of train data address
-        test_file: a string of test data address
+        feature_file: a string of train data address
+        label_file: a string of test data address
     Returns:
         train_feature: none
         train_label: none
-        test_feature: none
-        test_label: none
     """
-    # load train data from train file
+    # load data from filex
     train_feature = []
-    train_label = []
-    file_read = open(train_file)
-    for line in file_read.readlines():
-        data = line.strip().split()
-        train_label.append(int(data[0]))  # the first column is the label, data type: int
-        # from the second column to the end are the features, data type: float
-        _feature = [float(item) for item in data[1:]]
-        train_feature.append(_feature)
-    # load test data from test file
-    test_feature = []
-    test_label = []
-    file_read = open(test_file)
-    for line in file_read.readlines():
-        data = line.strip().split()
-        test_label.append(int(data[0]))  # the first column is the label, data type: int
-        # from the second column to the end are the features, data type: float
-        _feature = [float(item) for item in data[1:]]
-        test_feature.append(_feature)
-    return train_feature, train_label, test_feature, test_label
+    feature_read = open(feature_file, 'r')
+    label_read = open(label_file, 'r')
+    train_label = label_read.read().split('\n')[1:-1]
+    for line in feature_read.readlines():
+        data = line.strip().split(",")
+        try:
+            _feature = [float(item) for item in data]
+            train_feature.append(_feature)
+        except:
+            continue
+    #print(len(train_label),len(train_feature),train_label[-1])
+    sc = StandardScaler()
+    sc.fit(train_feature)
+    train_feature_std = sc.transform(train_feature)
+    return train_feature_std, train_label
 
+if __name__ == '__main__':
+    featuref = r'E:\SJTU\Homework\bio-big-data\常见机器学习算法实践作业\分类数据\breast_cancer.csv'
+    labelf = r'E:\SJTU\Homework\bio-big-data\常见机器学习算法实践作业\分类数据\breast_cancer_class.csv'
+    load_train_test(featuref,labelf)
 
