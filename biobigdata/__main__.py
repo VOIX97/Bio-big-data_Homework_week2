@@ -1,11 +1,11 @@
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
-from biobigdata.classification.random_forest import *
-from biobigdata.classification.svm import *
-from biobigdata.classification.knn import *
-from biobigdata.clustering.k_means import *
-from biobigdata.clustering.dbscan import *
+from biobigdata.classification.random_forest import random_forest
+from biobigdata.classification.svm import svm
+from biobigdata.classification.knn import knn
+from biobigdata.clustering.k_means import k_means
+from biobigdata.clustering.dbscan import dbscan
 from biobigdata.feature_engineering.load_data import load_train_test
-
+from biobigdata.feature_engineering.load_cluster_data import load_train
 
 def parse_args():
     parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter,
@@ -37,12 +37,12 @@ def main(args):
         accuracy_rate = knn(train_feature, train_label)
         print("model knn works on the data, the accuracy rate is: ", accuracy_rate)
     if args.method == 'k-means':
-        train_feature, train_label = load_train_test(args.feature, args.label)
-        accuracy_rate = k_means(train_feature, train_label)
+        train_feature = load_train(args.feature)
+        accuracy_rate = k_means(train_feature)
         print("model k-means works on the data, the accuracy rate is: ", accuracy_rate)
     if args.method == 'dbscan':
-        train_feature, train_label = load_train_test(args.feature, args.label)
-        accuracy_rate = dbscan(train_feature, train_label)
+        train_feature = load_train(args.feature)
+        accuracy_rate = dbscan(train_feature)
         print("model dbscan works on the data, the accuracy rate is: ", accuracy_rate)
 
 

@@ -1,20 +1,12 @@
 from sklearn.preprocessing import StandardScaler
 
-def load_train_test(feature_file, label_file):
+def load_train(feature_file):
     """
-    load data from train and test files out of the project
-    Args:
-        feature_file: a string of train data address
-        label_file: a string of test data address
-    Returns:
-        train_feature_std: none
-        train_label: none
+    load data from train file out of the project
     """
     # load data from filex
     train_feature = []
     feature_read = open(feature_file, 'r')
-    label_read = open(label_file, 'r')
-    train_label = label_read.read().split('\n')[1:-1]
     for line in feature_read.readlines():
         data = line.strip().split(",")
         try:
@@ -26,7 +18,7 @@ def load_train_test(feature_file, label_file):
     sc = StandardScaler()
     sc.fit(train_feature)
     train_feature_std = sc.transform(train_feature)
-    return train_feature_std, train_label
+    return train_feature_std
 
 if __name__ == '__main__':
     featuref = r'E:\SJTU\Homework\bio-big-data\常见机器学习算法实践作业\分类数据\breast_cancer.csv'
