@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Bio-big-data Homework week2
 The homework of course Bio-big-data, introducing several algorithms and their results in two datasets.
 
@@ -42,3 +43,6 @@ Generate annotator command:
      python -m biobigdata --method random-forest --feature data/breast_cancer.csv --label data/breast_cancer_class.csv
 
 
+=======
+# Bio-big-data Homework_week2
+>>>>>>> 77eea4761f8ca09a3438167a284df378a2b671d5
