@@ -6,8 +6,8 @@ import io
 setup(
     name="Bio-big-data-hw2",
     version="0.1.0",
-    author="",
-    author_email="",
+    author="XiangSheng",
+    author_email="xiangsheng1325@sjtu.edu.cn",
     description="Homework for Bio-big-data course.",
     long_description=io.open("README.md", encoding="UTF-8").read(),
     license="MIT",
