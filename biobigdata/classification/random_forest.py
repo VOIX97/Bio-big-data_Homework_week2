@@ -16,9 +16,11 @@ def random_forest(train_feature, train_label):
     rf.fit(train_feature, train_label)
     pre_label = rf.predict_proba(train_feature)
     _pre_label = []
+    _pre_score = []
     for item in pre_label:
         if item[0] > item[1]:
             _pre_label.append('0')
         else:
             _pre_label.append('1')
-    return accuracy_score(train_label, _pre_label)
+        _pre_score.append(item[1])
+    return accuracy_score(train_label, _pre_label),_pre_score

@@ -14,5 +14,4 @@ def svm(train_feature, train_label):
             _pre_label.append('1')
         _pre_score.append(item[1])
     print ('The auc is: {}'.format(roc_auc_score(train_label,_pre_score)))
-    print ('The score is: {}'.format(clf.score(train_feature,train_label)))
-    return clf.score(train_feature,train_label)
+    return clf.score(train_feature,train_label),_pre_score
